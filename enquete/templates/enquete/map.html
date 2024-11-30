@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex justify-center items-center h-screen">
+  <div id="map" class="w-full h-full max-w-screen-md max-h-screen-md"></div>
+  {{enquetes|json_script:"enquetes_json"}}
+</div>
+<script>
+  var map = L.map("map").setView([36.8065, 10.1815], 9);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(map);
+
+  let enquetes = JSON.parse(
+    document.getElementById("enquetes_json").textContent
+  );
+  enquetes.forEach((element) => {
+    L.marker([element.latitude, element.longitude], {
+      title: `Date : ${element.created_at}`,
+    })
+      .on("click", function () {
+        window.location = `/enquete/${element.pk}`;
+      })
+      .addTo(map);
+  });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,128 @@
+{% extends "base.html" %} {% block content %}
+
+<section>
+  <div class="container px-5 mx-auto flex flex-wrap">
+    <div
+      class="w-full mb-6 py-4 flex justify-between items-center border-b border-gray-200"
+    >
+      <div>
+        <h1 class="text-2xl text-gray-800">Liste des enquêtes :</h1>
+      </div>
+      <div>
+        <a class="text-gray-500 hover:text-blue-600" href="/enquete/create">
+          Créer une nouvelle enquête
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="relative overflow-x-auto shadow-md sm:rounded-lg max-w-5xl mx-auto"
+  >
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+        <tr>
+          <th scope="col" class="p-4">
+            <!--
+            <div class="flex items-center">
+              <input
+                id="checkbox-all-search"
+                type="checkbox"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+              />
+              <label for="checkbox-all-search" class="sr-only">checkbox</label>
+            </div>
+            -->
+          </th>
+          <th scope="col" class="px-6 py-3">Enquête ID</th>
+          <th scope="col" class="px-6 py-3">Agent</th>
+          <th scope="col" class="px-6 py-3">Gouvernorat</th>
+          <th scope="col" class="px-6 py-3">Délégation</th>
+          <th scope="col" class="px-6 py-3">Localité</th>
+          <th scope="col" class="px-6 py-3">Date</th>
+          <th scope="col" class="px-6 py-3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for enquete in enquetes_list %}
+        <tr class="bg-white border-b hover:bg-gray-50">
+          <td class="w-4 p-4">
+            <!---->
+          </td>
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+          >
+            {{enquete.pk}}
+          </th>
+          <td class="px-6 py-4">{{enquete.user}}</td>
+          <td class="px-6 py-4">{{enquete.localite.delegation.gouvernorat}}</td>
+          <td class="px-6 py-4">{{enquete.localite.delegation}}</td>
+          <td class="px-6 py-4">{{enquete.localite}}</td>
+          <td class="px-6 py-4">{{enquete.created_at}}</td>
+          <td class="px-6 py-4">
+            <a
+              href="/enquete/{{enquete.pk}}"
+              class="font-medium text-blue-600 hover:underline"
+              >Voir</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <nav
+      class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
+      aria-label="Table navigation"
+    >
+      <span
+        class="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto"
+        >{{enquetes_list}}</span
+      >
+      <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+        <li>
+          <a
+            href="?page=1"
+            class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
+            >First page</a
+          >
+        </li>
+        {% if enquetes_list.has_previous %}
+        <li>
+          <a
+            href="?page={{enquetes_list.previous_page_number}}"
+            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+            >{{enquetes_list.previous_page_number}}</a
+          >
+        </li>
+        {% endif %}
+        <li>
+          <a
+            href="#"
+            aria-current="page"
+            class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700"
+            >{{enquetes_list.number}}</a
+          >
+        </li>
+        {% if enquetes_list.has_next %}
+        <li>
+          <a
+            href="?page={{enquetes_list.next_page_number}}"
+            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+            >{{enquetes_list.next_page_number}}</a
+          >
+        </li>
+        {% endif %}
+        <li>
+          <a
+            href="?page={{enquetes_list.paginator.num_pages}}"
+            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
+            >Last page</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+{% endblock content %}

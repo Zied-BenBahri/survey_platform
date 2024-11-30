@@ -1,0 +1,142 @@
+{% extends "base.html" %} {% block content %}
+<section>
+  <div class="container px-5 py-4 mx-auto flex flex-wrap">
+    <div
+      class="w-full mb-6 py-4 flex justify-between items-center border-b border-gray-200"
+    >
+      <div>
+        <h1 class="text-2xl text-gray-800">
+          Détails de l'enquête {{enquete.pk}}:
+        </h1>
+      </div>
+      <div>
+        <a class="text-gray-500 hover:text-blue-500" href="/enquete/list">
+          retour à la liste
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center min-h-screen">
+    <div class="max-w-md text-gray-900 divide-y divide-gray-200">
+      <div class="flex flex-col pb-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">Agent</dt>
+        <dd class="text-lg font-semibold">{{enquete.user}}</dd>
+      </div>
+      <div class="flex flex-col py-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">Localité</dt>
+        <dd class="text-lg font-semibold">
+          {{enquete.localite.delegation.gouvernorat}},
+          {{enquete.localite.delegation}}, {{enquete.localite}}
+        </dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">Date de création :</dt>
+        <dd class="text-lg font-semibold">{{enquete.created_at}}</dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">Statut de résidence :</dt>
+        <dd class="text-lg font-semibold">{{enquete.statutResidence}}</dd>
+      </div>
+
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">
+          Nombre de personnes dans le foyer :
+        </dt>
+        <dd class="text-lg font-semibold">{{enquete.nbPersFoyer}}</dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">
+          Niveau d'éducation du chef de foyer :
+        </dt>
+        <dd class="text-lg font-semibold">{{enquete.NivEduc}}</dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">Type de biomasse :</dt>
+        <dd class="text-lg font-semibold">{{enquete.typeBiomasse}}</dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">Usage de biomasse :</dt>
+        <dd class="text-lg font-semibold">{{enquete.usageBiomasse}}</dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">
+          Quantité approximative de biomasse utilisée par mois
+        </dt>
+        <div class="relative overflow-x-auto">
+          <table
+            class="w-full text-sm text-center rtl:text-right text-gray-500"
+          >
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+              <tr>
+                <th scope="col" class="px-6 py-3 rounded-s-lg">Biomasse</th>
+                <th scope="col" class="px-6 py-3 rounded-e-lg">
+                  Quantité en Kg / mois
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-blue">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                >
+                  Bois de chauffage
+                </th>
+                <td class="px-6 py-4">{{enquete.QteBoisChauffage}}</td>
+              </tr>
+              <tr class="bg-white">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                >
+                  Résidus agricoles
+                </th>
+                <td class="px-6 py-4">{{enquete.QteResiduAgric}}</td>
+              </tr>
+              <tr class="bg-white">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                >
+                  Déchets végétaux
+                </th>
+                <td class="px-6 py-4">{{enquete.QteDechetsVeget}}</td>
+              </tr>
+              <tr class="bg-white">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                >
+                  Charbon de bois
+                </th>
+                <td class="px-6 py-4">{{enquete.QteCharbonBois}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">
+          source d'approvisionnement :
+        </dt>
+        <dd class="text-lg font-semibold">{{enquete.sourceApprov}}</dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">Raison d'usage :</dt>
+        <dd class="text-lg font-semibold">{{enquete.raisonUsage}}</dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">
+          Passer à une autre source d'énergie :
+        </dt>
+        <dd class="text-lg font-semibold">{{enquete.changerEnergie}}</dd>
+      </div>
+      <div class="flex flex-col pt-3">
+        <dt class="mb-1 text-gray-500 md:text-lg">Source alternatives :</dt>
+        <dd class="text-lg font-semibold">{{enquete.sourceAlter}}</dd>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

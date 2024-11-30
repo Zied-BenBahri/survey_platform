@@ -1,0 +1,10 @@
+{
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.useInlineCompletions": true,
+    "emmet.triggerExpansionOnTab": true,
+    "files.associations": {"*html":"html"},    
+    "emmet.syntaxProfiles": {
+
+    }
+
+}
