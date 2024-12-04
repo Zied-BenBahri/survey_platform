@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import *
 from django.core.paginator import Paginator
-# Create your views here.
+
 
 def enquete_map(request):
     if not(request.user.is_authenticated):
