@@ -43,7 +43,8 @@ class Agent(models.Model):
     def __str__(self):
         return self.user.username
 """
-#  table Enquete
+#  table Enqueteù
+
 class Enquete(models.Model):
 
     statutResidence_CHOICES = (
