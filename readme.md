@@ -33,6 +33,9 @@ This platform allows field investigators to conduct biomass consumption surveys,
 
 ![Dashboard](images/figure_9.png)  
 ![Survey Detail](images/figure_12.png)
+![Survey Detail](images/figure_12a.png)
+![Survey Detail](images/figure_12b.png)
+![Survey Detail](images/figure_12c.png)
 
 ---
 
